@@ -8,11 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ProductserviceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ProductserviceApplication.class, args);
+    }
     //    private MentorRepository mentorRepository;
 //
 //
 //    private UserRepository userRepository;
-    private final ProductRepository productRepository;
+//    private final ProductRepository productRepository;
 //    private final CategoryRepository categoryRepository;
 //    private final PriceRepository priceRepository;
 //
@@ -27,9 +31,6 @@ public class ProductserviceApplication {
 //        this.categoryRepository = categoryRepository;
 //        this.priceRepository = priceRepository;
 //    }
-    public static void main(String[] args) {
-        SpringApplication.run(ProductserviceApplication.class, args);
-    }
     //    @Transactional()
 //    @Override
 //    public void run(String... args) throws Exception {
@@ -56,11 +57,11 @@ public class ProductserviceApplication {
 //        Price price = new Price("Rupee", 10);
 ////        Price savedPrice = priceRepository.save(price);
 //
-        Product product = new Product();
-        product.setTitle("iPhone 15 Pro");
-        product.setDescription("The best iPhone Ever");
-        product.setCategory(category);
-        product.setPrice(price);
-        productRepository.save(product);
+//        Product product = new Product();
+//        product.setTitle("iPhone 15 Pro");
+//        product.setDescription("The best iPhone Ever");
+//        product.setCategory(category);
+//        productRepository.save(product);
+//        product.setPrice(price);
 
 }

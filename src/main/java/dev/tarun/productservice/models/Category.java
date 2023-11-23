@@ -11,13 +11,19 @@ import java.util.List;
 @Getter
 @Setter
 public class Category extends BaseModel{
+    //for the non-collection attribute,by default the fetch type is eager.
     private String name;
-    //if we do not use mappedBy spring thought that there are two different relation, so it
+    //if we do not use mappedBy, spring thought that there are two different relation, so it
     // will create a column of category_id in product table and also a category_products table will be created .
-    @OneToMany(mappedBy = "category") //it should be in OneToMany side
+
+    //for the collection(List) attribute,by default the fetch type is Lazy
+    @OneToMany(mappedBy = "category") //this "mappedBy" should be in OneToMany side
     private List<Product> products;
     //this is the same relation being mapped by category attribute in the other(Product) class
 }
+
+
+
 /*
 class Group{
 m:m
