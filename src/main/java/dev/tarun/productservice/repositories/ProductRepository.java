@@ -1,5 +1,6 @@
 package dev.tarun.productservice.repositories;
 
+import dev.tarun.productservice.models.Category;
 import dev.tarun.productservice.models.Product;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,6 +28,12 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     long countDistinctByPrice_Currency(String Currency);//count number of distinct products having this currency
 
     List<Product> findAllByTitleLike(String titleRegex);
+
+
+ List<Product> findAllByCategoryIn(List<Category> categories);
+
+ //    @Query("select Product  from Product  where Product .category.uuid in :uuids")
+//    List<Product> findAllByCategoryIn(List<UUID> uuids);
 
     @Query(value=CustomQueries.FIND_ALL_BY_TITLE,nativeQuery = true) //So that if we are using postgresql query , we just
     List<Product> findAllByTitle(String naman);              //just have to change one file i.e. CustomQueries

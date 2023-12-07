@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,8 @@ public class Category extends BaseModel{
     // will create a column of category_id in product table and also a category_products table will be created .
 
     //for the collection(List) attribute,by default the fetch type is Lazy
-    @OneToMany(mappedBy = "category") //this "mappedBy" should be in OneToMany side
+    @OneToMany(mappedBy = "category") //this "mappedBy" should be in OneToMany side//so there will not be column on both sides
+    @Fetch(FetchMode.SUBSELECT)//two db calls will happen, to fetch the category and the all the products associated with the category in one go
     private List<Product> products=new ArrayList<>();
     //this is the same relation being mapped by category attribute in the other(Product) class
 }

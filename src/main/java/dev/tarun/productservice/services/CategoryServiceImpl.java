@@ -38,41 +38,41 @@ public class CategoryServiceImpl implements CategoryService {
         return category;
     }
 
-//    public List<String> getProductTitles(List<String> categoryUUIDs) {
-//        List<UUID> uuids = new ArrayList<>();
-//
-//        for (String uuid: categoryUUIDs) {
-//            uuids.add(UUID.fromString(uuid));
-//        }
-////
-////        List<Category> categories = categoryRepository.findAllById(uuids);
-////
-////
-////        List<String> titles = new ArrayList<>();
-////
-////        categories.forEach(
-////                category -> {
-////                    category.getProducts().forEach(
-////                            product -> {
-////                                titles.add(product.getTitle());
-////                            }
-////                    );
-////                }
-////        );
-////
-////
-////        return titles;
+    public List<String> getProductTitles(List<String> categoryUUIDs) {
+        List<UUID> uuids = new ArrayList<>();
+
+        for (String uuid: categoryUUIDs) {
+            uuids.add(UUID.fromString(uuid));
+        }
 //
 //        List<Category> categories = categoryRepository.findAllById(uuids);
 //
-//        List<Product> products = productRepository.findAllByCategoryIn(categories);
 //
 //        List<String> titles = new ArrayList<>();
 //
-//        for (Product p: products) {
-//            titles.add(p.getTitle());
-//        }
+//        categories.forEach(
+//                category -> {
+//                    category.getProducts().forEach(
+//                            product -> {
+//                                titles.add(product.getTitle());
+//                            }
+//                    );
+//                }
+//        );
+//
 //
 //        return titles;
-//    }
+
+        List<Category> categories = categoryRepository.findAllById(uuids);
+
+        List<Product> products = productRepository.findAllByCategoryIn(categories);
+
+        List<String> titles = new ArrayList<>();
+
+        for (Product p: products) {
+            titles.add(p.getTitle());
+        }
+
+        return titles;
+    }
 }

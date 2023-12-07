@@ -1,5 +1,6 @@
 package dev.tarun.productservice.controllers;
 
+import dev.tarun.productservice.dtos.GetProductTitlesRequestDto;
 import dev.tarun.productservice.dtos.ProductDto;
 import dev.tarun.productservice.models.Product;
 import dev.tarun.productservice.services.CategoryService;
@@ -35,11 +36,11 @@ public class CategoryController {
         return productDtos;
     }
 
-//    @GetMapping("/titles/")
-//    public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto) {
-//
-//        List<String> uuids = requestDto.getUuids();
-//
-//        return categoryService.getProductTitles(uuids);
-//    }
+    @GetMapping("/titles/")
+    public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto) {
+
+        List<String> uuids = requestDto.getUuids();
+
+        return categoryService.getProductTitles(uuids);
+    }
 }
