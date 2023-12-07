@@ -20,7 +20,7 @@ public class Product extends BaseModel{
     @JoinColumn(name="category") // what should be the name of category column in product table
     private Category category;
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})// CascadeType.REMOVE, it means that if the owning entity is deleted (removed) from the database, the associated entities should also be removed.
     private Price price;
 }
 //Lombok is used for -

@@ -5,6 +5,7 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Category extends BaseModel{
 
     //for the collection(List) attribute,by default the fetch type is Lazy
     @OneToMany(mappedBy = "category") //this "mappedBy" should be in OneToMany side
-    private List<Product> products;
+    private List<Product> products=new ArrayList<>();
     //this is the same relation being mapped by category attribute in the other(Product) class
 }
 

@@ -28,7 +28,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     List<Product> findAllByTitleLike(String titleRegex);
 
-    @Query(value=CustomQueries.FIND_ALL_BY_TITLE,nativeQuery = true) //So that if we are usinf postgresql query , we just
+    @Query(value=CustomQueries.FIND_ALL_BY_TITLE,nativeQuery = true) //So that if we are using postgresql query , we just
     List<Product> findAllByTitle(String naman);              //just have to change one file i.e. CustomQueries
     //solution of above issue is using hibernate query
 

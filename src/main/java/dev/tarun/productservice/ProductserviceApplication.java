@@ -1,17 +1,21 @@
 package dev.tarun.productservice;
 
+import dev.tarun.productservice.models.Category;
 import dev.tarun.productservice.models.Product;
+import dev.tarun.productservice.repositories.CategoryRepository;
 import dev.tarun.productservice.repositories.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.antlr.v4.runtime.misc.LogManager;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class ProductserviceApplication {
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
-    public static void main(String[] args) {
-        SpringApplication.run(ProductserviceApplication.class, args);
-    }
+@SpringBootApplication
+public class ProductserviceApplication {//implements CommandLineRunner {
     //    private MentorRepository mentorRepository;
 //
 //
@@ -31,7 +35,11 @@ public class ProductserviceApplication {
 //        this.categoryRepository = categoryRepository;
 //        this.priceRepository = priceRepository;
 //    }
-    //    @Transactional()
+
+    public static void main(String[] args) {
+        SpringApplication.run(ProductserviceApplication.class, args);
+        }
+//    @Transactional()
 //    @Override
 //    public void run(String... args) throws Exception {
 ////        Mentor mentor = new Mentor();
@@ -61,7 +69,42 @@ public class ProductserviceApplication {
 //        product.setTitle("iPhone 15 Pro");
 //        product.setDescription("The best iPhone Ever");
 //        product.setCategory(category);
-//        productRepository.save(product);
 //        product.setPrice(price);
+//
+//        productRepository.save(product);
+//
+//        productRepository.deleteById(UUID.fromString("95672ed6-3127-4248-ae33-97a261c0a6f4"));
+//
+//        System.out.println(productRepository.countAllByPrice_Currency("Rupee"));
+//        List<Product> products = productRepository.findAllByPrice_Currency("Rupee");
+////        Category category1 = categoryRepository.findById(UUID.fromString("5e6f679e-f326-44ae-b220-544b3822ab00")).get();
+////        System.out.println("Category name is: " + category1.getName());
+////        System.out.println("Printing all products in the category");
+//////        Thread.sleep(1000);
+////
+////        System.out.println(category1.getProducts().size());
+////        category1.getProducts().forEach(
+////                product1 -> System.out.println(product1.getTitle())
+////        );
+////
+////        for (Product product1: category1.getProducts()) {
+////            try {
+////                System.out.println(product1.getTitle());
+////            } catch (Exception e) {
+////                System.out.println(e.getMessage());
+////            }
+////        }
+//
+//        List<Product> products1 = productRepository.findAllByTitle("iPhone 15 Pro");
+//
+//        System.out.println("Fetching category b8f1f459-f9e9-4d3d-b115-f1f5267bd54f");
+//        Thread.sleep(1000);
+//        Category category1 = categoryRepository.findById(UUID.fromString("b8f1f459-f9e9-4d3d-b115-f1f5267bd54f")).get();
+////        Category category1 = category1Optional.get();
+//
+//        System.out.println("Fetching products for category");
+//        Thread.sleep(1000);
+//        List<Product> products11 = category1.getProducts();
+//    }
 
 }
