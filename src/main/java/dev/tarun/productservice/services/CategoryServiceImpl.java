@@ -14,7 +14,7 @@ import java.util.UUID;
 @Service
 public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
-    private final ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository,
                                ProductRepository productRepository) {

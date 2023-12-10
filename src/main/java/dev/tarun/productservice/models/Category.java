@@ -22,6 +22,7 @@ public class Category extends BaseModel{
     //for the collection(List) attribute,by default the fetch type is Lazy
     @OneToMany(mappedBy = "category") //this "mappedBy" should be in OneToMany side//so there will not be column on both sides
     @Fetch(FetchMode.SUBSELECT)//two db calls will happen, to fetch the category and the all the products associated with the category in one go
+    //subselect will only work if it is a list/multivalued attribute
     private List<Product> products=new ArrayList<>();
     //this is the same relation being mapped by category attribute in the other(Product) class
 }

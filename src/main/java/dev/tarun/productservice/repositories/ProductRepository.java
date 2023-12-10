@@ -39,7 +39,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     List<Product> findAllByTitle(String naman);              //just have to change one file i.e. CustomQueries
     //solution of above issue is using hibernate query
 
-    @Query("select Product from Product where Product.price.currency=:currency and Product.title=:naman") //hibernate query
+    @Query("select p from Product p where p.price.currency=:currency and p.title=:naman") //hibernate query
     List<Product> readAllByTitle(String naman);
 
     //very imp-
