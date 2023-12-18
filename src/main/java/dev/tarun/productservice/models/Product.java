@@ -23,6 +23,9 @@ public class Product extends BaseModel{
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE},fetch = FetchType.LAZY)// CascadeType.REMOVE, it means that if the owning entity is deleted (removed) from the database, the associated entities should also be removed.
     //fetchmode //subselect will only work if it is a list/multivalued attribute
     private Price price;
+
+    private int inventoryCount;
+
 }
 //Lombok is used for -
 //-@Getter @Setter @AllArgConstructor @NoArgConstructor @Builder
