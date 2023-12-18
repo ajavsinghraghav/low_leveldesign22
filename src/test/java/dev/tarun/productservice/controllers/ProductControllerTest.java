@@ -1,5 +1,6 @@
 package dev.tarun.productservice.controllers;
 
+import dev.tarun.productservice.dtos.GenericProductDto;
 import dev.tarun.productservice.exceptions.NotFoundException;
 import dev.tarun.productservice.services.FakeStoreProductService;
 import dev.tarun.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductServiceClient;
@@ -11,15 +12,20 @@ import org.springframework.transaction.NoTransactionException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductControllerTest {
-//    @Autowired
-//    private FakeStoreProductServiceClient fakeStoreProductServiceClient;
+    private FakeStoreProductServiceClient fakeStoreProductServiceClient;
+    private ProductController productController;
+    @Test
+    void returnsNullWhenProductDoesntExist() throws NotFoundException{
+        GenericProductDto genericProductDto=productController.getProductById(121L);
+        assertNull(genericProductDto);
+    }
     @Test
     @DisplayName("1+1 equals 2")
     void onePlusOneEqualsTrue(){
 //        System.out.println("It is true");
 //        assertEquals(11,1+1,"one plus is not coming to be 11");
 //        assertNull(fakeStoreProductServiceClient.getProductById(101L));
-//        assertThrows(NotFoundException.class,()->FakeStoreProductServiceClient.getProductById(101L));
+//      assertThrows(NotFoundException.class,()->FakeStoreProductServiceClient.getProductById(121L));
     }
     @Test
     void additionShouldBeCorrect(){

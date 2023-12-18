@@ -2,6 +2,7 @@ package dev.tarun.productservice.thirdpartyclients.productsservice.fakestore;
 
 import dev.tarun.productservice.dtos.GenericProductDto;
 import dev.tarun.productservice.exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
@@ -15,8 +16,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-@Service
+@Component
 public class FakeStoreProductServiceClient{
+
     private RestTemplateBuilder restTemplateBuilder;
 
     @Value("${fakestore.api.url}")
@@ -27,6 +29,7 @@ public class FakeStoreProductServiceClient{
 
     private String specificProductRequestURL; //gotten from third party API
     private String ProductRequestsBaseURL;
+
     public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder,
                                          @Value("${fakestore.api.url}")String fakeStoreApiUrl,
                                          @Value("${fakestore.api.paths.product}") String fakeStoreProductsApiPath){
