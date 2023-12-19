@@ -37,7 +37,15 @@ public class ProductController {
     }
     @GetMapping("{id}")
     public GenericProductDto getProductById(@PathVariable("id")Long id) throws NotFoundException{
-        return productService.getProductById(id);
+        GenericProductDto productDto=productService.getProductById(id);
+        if(productDto==null){
+           throw new NotFoundException("Product Doesn't Exist");
+        }
+//        //created case for failing returnSameProductAsService method in ProductControllerTest
+//        GenericProductDto genericProductDto=new GenericProductDto();
+//        genericProductDto.setTitle(productDto.getTitle());
+//        return genericProductDto;
+        return productDto ;
     }
     @DeleteMapping("{id}")
     public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id")Long id){

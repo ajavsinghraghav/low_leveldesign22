@@ -3,21 +3,49 @@ package dev.tarun.productservice.controllers;
 import dev.tarun.productservice.dtos.GenericProductDto;
 import dev.tarun.productservice.exceptions.NotFoundException;
 import dev.tarun.productservice.services.FakeStoreProductService;
+import dev.tarun.productservice.services.ProductService;
 import dev.tarun.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductServiceClient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.NoTransactionException;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+@SpringBootTest
 public class ProductControllerTest {
     private FakeStoreProductServiceClient fakeStoreProductServiceClient;
+    @Autowired
     private ProductController productController;
+    @MockBean
+    private ProductService productService;
+//    @Test
+//    void returnsNullWhenProductDoesntExist() throws NotFoundException{
+//        GenericProductDto genericProductDto=productController.getProductById(121L);
+//        //hardcoded what productsService returning , because ProductService was not returning null(as expecting),it is returning GenericProductDto Object
+//        //when(productService.getProductById(121L)).thenReturn(null);
+//        //when(productService.getProductById(121L)).thenReturn(any(Long.class));
+//        //when(productService.getProductById(121L)).thenReturn(new GenericProductDto());
+//        assertNull(genericProductDto);
+//    }
     @Test
-    void returnsNullWhenProductDoesntExist() throws NotFoundException{
-        GenericProductDto genericProductDto=productController.getProductById(121L);
-        assertNull(genericProductDto);
+    void throwsExceptionWhenProductDoesntExist() throws NotFoundException {
+        when(
+                productService.getProductById(any(Long.class))
+        ).thenReturn(null);
+        assertThrows(NotFoundException.class,()->productController.getProductById(123L));
+    }
+    @Test
+    void returnSameProductAsService() throws NotFoundException {
+        GenericProductDto genericProductDto=new GenericProductDto();
+        when(
+                productService.getProductById(any(Long.class))
+        )
+                .thenReturn(genericProductDto);
+        assertEquals(genericProductDto,productController.getProductById(123L));
     }
     @Test
     @DisplayName("1+1 equals 2")

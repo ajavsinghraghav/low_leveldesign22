@@ -15,7 +15,8 @@ public class SelfProductServiceImpl implements ProductService{
     }
     @Override
     public GenericProductDto getProductById(Long id){
-        return null;
+        System.out.println("In SelfProductServiceImpl");
+        return new GenericProductDto();
     }
 
     @Override
