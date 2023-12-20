@@ -2,7 +2,6 @@ package dev.tarun.productservice.controllers;
 
 import dev.tarun.productservice.dtos.GenericProductDto;
 import dev.tarun.productservice.exceptions.NotFoundException;
-import dev.tarun.productservice.services.FakeStoreProductService;
 import dev.tarun.productservice.services.ProductService;
 import dev.tarun.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductServiceClient;
 import org.junit.jupiter.api.DisplayName;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.transaction.NoTransactionException;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
