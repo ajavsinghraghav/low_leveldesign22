@@ -93,11 +93,39 @@ public class ProductControllerWebMvcTest {
                 )
                 .andExpect(
                         content().string(objectMapper.writeValueAsString(expectedProduct))
-                );
-
+                ).andExpect(status().is(200))
+                .andExpect(jsonPath("$.student.name", is("Naman")))
+                .andExpect(jsonPath("$.length()", is(2)));
+                //assertj and matchers(is,..) are using for checking format/body of json
+               //this is for last 2 andExpect
 
     }
 }
+// {
+//   student: {
+//      name: ,
+//      email: ,
+//      age: ,
+//   }
+// }
+
+// [
+//   {
+//     id: ,
+//     name: ,
+//     email: ,
+//   },
+//  {
+//    id: ,
+//    name: ,
+//    email: ,
+//  }
+//
+// ]
+
+// l1 -> [o1, o2, o3]
+
+// l2 -> [o1'(1001L), o2', o3']
 
 //object Mapper is used to convert a java object to a json format
 //diff b/w springbootTest and webMvcTest

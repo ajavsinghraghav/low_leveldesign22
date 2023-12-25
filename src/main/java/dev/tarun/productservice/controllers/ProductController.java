@@ -56,7 +56,8 @@ public class ProductController {
     }
     @GetMapping("{id}")
     public GenericProductDto getProductById(@PathVariable("id")Long id) throws NotFoundException{
-        GenericProductDto productDto=productService.getProductById(id);
+        GenericProductDto productDto=productService.getProductById(id+1L);
+        //+1L is done for checking function of Argument Captor
         if(productDto==null){
            throw new NotFoundException("Product Doesn't Exist");
         }

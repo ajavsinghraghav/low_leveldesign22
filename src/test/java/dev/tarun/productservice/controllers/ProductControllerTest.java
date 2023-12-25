@@ -6,11 +6,14 @@ import dev.tarun.productservice.services.ProductService;
 import dev.tarun.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductServiceClient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ProductControllerTest {
@@ -19,6 +22,8 @@ public class ProductControllerTest {
     private ProductController productController;
     @MockBean
     private ProductService productService;
+    @Captor
+    private ArgumentCaptor<Long> idCaptor;
 //    @Test
 //    void returnsNullWhenProductDoesntExist() throws NotFoundException{
 //        GenericProductDto genericProductDto=productController.getProductById(121L);
@@ -58,4 +63,26 @@ public class ProductControllerTest {
         assertTrue(-1+0==-1,"adding negative and a zero is giving wrong answer");
         assertFalse(-1+1==0,"");
     }
+        @Test
+    void productControllerCallsProductServiceWithSameProductId() throws NotFoundException {
+        Long id = 101L;
+
+        when(productService.getProductById(any()))
+                .thenReturn(new GenericProductDto());
+
+        // check that the product service is being called with the exact same
+        // param as controller
+
+        productController.getProductById(id);
+
+        verify(productService).getProductById(idCaptor.capture());
+        assertEquals(id, idCaptor.getValue());
+    }
 }
+//            when(fakeStoryProductServiceClient.getProductById(any()))
+//                    .thenCallRealMethod();
+
+//        when(fakeStoreProductService.getProductById(any()))
+//                .thenCallRealMethod();
+//        verify(fakeStoryProductServiceClient).getProductById(fakeStoreCaptor.capture());
+//        assertEquals(id, fakeStoreCaptor.getValue());
