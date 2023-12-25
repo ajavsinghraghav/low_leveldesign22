@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-@Primary //if there are two conflicting instances of that particaular thing, use this particular instance
+@Primary //if there are two conflicting instances of that particular thing, use this particular instance
 @Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService{
     private FakeStoreProductServiceClient fakeStoreProductServiceClient;

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,9 @@ public class ProductController {
     // field injection
     private ProductService productService;
 
-
     // constructor injection
 //    @Autowired
-    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService){
+    public ProductController(ProductService productService){
         this.productService=productService;
     }
     //
@@ -32,8 +32,27 @@ public class ProductController {
 //        this.productService = productService;
 //    }
     @GetMapping
-    public List<GenericProductDto> getAllProducts(){
-        return productService.getAllProducts();
+    public ResponseEntity<List<GenericProductDto>> getAllProducts(){
+        List<GenericProductDto> productDtos = productService.getAllProducts();
+        if (productDtos.isEmpty()) {
+            return new ResponseEntity<>(
+                    productDtos,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        List<GenericProductDto> genericProductDtos = new ArrayList<>();
+
+        for (GenericProductDto gpd: productDtos) {
+            genericProductDtos.add(gpd);
+        };
+
+//        genericProductDtos.remove(genericProductDtos.get(0));
+
+        return new ResponseEntity<>(genericProductDtos, HttpStatus.OK);
+
+//        productDtos.get(0).setId(1001L);
+
+//        return new ResponseEntity<>(productDtos, HttpStatus.OK);
     }
     @GetMapping("{id}")
     public GenericProductDto getProductById(@PathVariable("id")Long id) throws NotFoundException{
